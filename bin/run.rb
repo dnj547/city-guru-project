@@ -3,4 +3,5 @@ require_relative "../lib/api_communicator.rb"
 require_relative "../lib/command_line_interface.rb"
 
 welcome
-gets_user_name
+user_exists?
+# find_or_create_user
