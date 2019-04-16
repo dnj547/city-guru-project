@@ -18,4 +18,3 @@ def city_info(city_name)
   new_response_string = RestClient.get(city_url)
   new_response_hash = JSON.parse(new_response_string)
 end
-0

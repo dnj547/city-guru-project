@@ -2,4 +2,5 @@ require_relative '../config/environment'
 require_relative "../lib/api_communicator.rb"
 require_relative "../lib/command_line_interface.rb"
 
-city_info("San Francisco")
+welcome
+gets_user_name
