@@ -17,7 +17,7 @@ def check_favorites
 end
 
 def save_favorites
-  
+
 end
 
 
@@ -38,7 +38,6 @@ def output_if_user_exists(user_name)
   puts "2) Search for a city"
   puts "3) Fun facts"
   puts "4) Exit"
-
 end
 
 def output_if_user_does_not_exist(user_name)
@@ -48,19 +47,45 @@ def output_if_user_does_not_exist(user_name)
   puts "3) Exit"
 end
 
-def menu_selection(selection)
-  if gets_input == 1
+def welcome_menu_user_exist(selection)
+  if selection == 1
 
-  elsif gets_input == 2
+  elsif selection == 2
 
-  elsif gets_input == 3
-
-  elsif gets_input == 4
+  elsif selection == 3
 
   elsif
-    gets_input == 5
+    selection == 4
     exit!
   end
+end
+
+def welcome_menu_new_user(selection)
+  if selection == 1
+
+  elsif selection == 2
+
+  elsif
+    selection == 3
+    exit!
+  end
+end
+
+def city_info_menu(selection)
+  if selection == 1
+
+  elsif selection == 2
+
+  elsif selection == 3
+  elsif selection == 4
+  elsif
+    selection == 5
+    exit!
+  end
+end
+
+def salary_data_menu(selection)
+
 end
 
 ###################### HELPER METHODS ######################

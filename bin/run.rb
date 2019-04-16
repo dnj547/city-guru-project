@@ -12,5 +12,6 @@ find_or_create_user(user_name)
 city_name = gets_input
 city_info(city_name)
 
-# selection = gets_input
-# menu_selection(selection)
+
+selection = gets_input
+menu_selection(selection)
