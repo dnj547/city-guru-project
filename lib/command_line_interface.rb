@@ -78,38 +78,41 @@ def city_search_menu(user_name)
 end
 
 def city_info_menu(city_name, user_name)
-  display_city_info(city_name)
-  puts "what would you like to do next?"
-  puts "1. View salary data for this city"
-  puts "2. View quality of life data for this city"
-  puts "3. Add this city to my favorites"
-  puts "4. Look at my favorites"
-  puts "(Type B to go back, M for main menu, E to exit)"
+  if valid_city?(city_name)
+    display_city_info(city_name)
+    puts "What would you like to do next?"
+    puts "(Type B to go back, M for main menu, E to exit)"
+    puts "1. View salary data for this city"
+    puts "2. View quality of life data for this city"
+    puts "3. Add this city to my favorites"
+    puts "4. Look at my favorites"
 
-  valid_inputs = ["1", "2", "3","4", 'e', 'm', 'b']
-  input = gets.chomp
-
-  until valid_inputs.include? input.downcase do
-    puts "Invalid input. Please select a number from the menu."
+    valid_inputs = ['1', '2', '3', '4', 'e', 'm', 'b']
     input = gets.chomp
-  end
 
-  if input.downcase == 'e'
-    exit_method
-  elsif input.downcase == 'm'
-    welcome_message(user_name)
-    main_menu_options(user_name)
-  elsif input.downcase == 'b'
-    city_search_menu(user_name)
-  elsif input == '1'
-    # move to salary data
-    salary_data_menu(city_name)
-  elsif input == '2'
-    # move to quality of life data
-  elsif input == '3'
-    save_to_favorites_menu(city_name, user_name)
-  elsif input == '4'
-    check_favorites(user_name)
+    until valid_inputs.include? input.downcase do
+      puts "Invalid input. Please select a number from the menu."
+      input = gets.chomp
+    end
+    if input.downcase == 'e'
+      exit_method
+    elsif input.downcase == 'm'
+      welcome_message(user_name)
+      main_menu_options(user_name)
+    elsif input.downcase == 'b'
+      city_search_menu(user_name)
+    elsif input == '1'
+      # move to salary data
+      salary_data_menu(city_name)
+    elsif input == '2'
+      # move to quality of life data
+    elsif input == '3'
+      save_to_favorites_menu(city_name, user_name)
+    elsif input == '4'
+      check_favorites(user_name)
+    end
+  else
+    city_search_menu(city_name)
   end
 end
 
@@ -169,10 +172,11 @@ def save_to_favorites_menu(city_name, user_name)
   name = return_city_name(city_name)
   location = return_city_location(city_name)
   population = return_city_population(city_name)
-  city = City.find_or_create_by(name: city_name, location: location, population: population)
-  user_id = User.find_by(name: user_name)
-  city_id = City.find_by(name: city_name)
-  Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
+  # binding.pry
+  city = City.find_or_create_by(name: name, location: location, population: population)
+  user_id = User.find_by(name: user_name).id
+  city_id = City.find_by(name: name).id
+  favorite = Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
 
   puts "#{name} has been successfully added to your favorites!"
   puts "What would you like to do now? Please enter a number"
@@ -200,7 +204,7 @@ def save_to_favorites_menu(city_name, user_name)
     end
   end
 end
-
+# save_to_favorites_menu("ber", "Danielle")
 
 
 

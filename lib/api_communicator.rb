@@ -11,7 +11,6 @@ def display_city_info(city_name)
   else
     puts "============================================="
     puts "No results found. Please try again."
-    puts "============================================="
   end
 end
 
