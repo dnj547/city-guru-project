@@ -40,7 +40,7 @@ def welcome_message(user_name)
 end
 
 
-def main_menu_options(user_name)
+def main_menu(user_name)
   valid_inputs = ["1", "2", "3", 'e', 'm']
   input = gets.chomp
   until valid_inputs.include? input.downcase do
@@ -119,22 +119,15 @@ def exit_method
 end
 
 
-# def city_info_menu(selection)
-#   if selection == 1
-#
-#   elsif selection == 2
-#
-#   elsif selection == 3
-#   elsif selection == 4
-#   elsif
-#     selection == 5
-#     exit!
-#   end
-# end
-
-# def salary_data_menu(selection)
-#
-# end
+def salary_data_menu
+  puts "Please select a job title by its number."
+  puts "(Type B to go back, M for main menu, E to exit)"
+  puts "1. QA Engineer"
+  puts "2. Software Engineer"
+  puts "3. UX Designer"
+  puts "4. Web Designer"
+  puts "5. Web Developer"
+end
 #
 # def check_favorites
 #
