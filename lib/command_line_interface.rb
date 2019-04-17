@@ -106,7 +106,7 @@ def city_info_menu(city_name, user_name)
   elsif input == '2'
     # move to quality of life data
   elsif input == '3'
-    # add this city to favorites
+    save_to_favorites_menu(city_name, user_name)
   elsif input == '4'
     # move to favorites
   end
@@ -165,6 +165,7 @@ end
 def save_to_favorites_menu(city_name, user_name)
   # add the city to the cities table
   # add the city to the user's favorites by adding a row to the favorites table
+  name = return_city_name(city_name)
   location = return_city_location(city_name)
   population = return_city_population(city_name)
   city = City.find_or_create_by(name: city_name, location: location, population: population)
@@ -172,15 +173,40 @@ def save_to_favorites_menu(city_name, user_name)
   city_id = City.find_by(name: city_name)
   Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
 
+  puts "#{name} has been successfully added to your favorites!"
+  puts "What would you like to do now? Please enter a number"
+  puts "(Type M for main menu, E to exit)"
+  puts "1. Look at my favorites"
+
+  valid_inputs = ["1", 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu_options(user_name)
+  elsif input.downcase == 'b'
+    city_search_menu(user_name)
+  else
+    if input == '1'
+      # move to my favorites
+    end
+  end
 end
 
 
 
-#
-# def check_favorites
-#
-# end
-#
+
+def check_favorites
+
+end
+
 
 
 ###################### MENU METHODS ######################
