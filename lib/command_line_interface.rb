@@ -129,6 +129,17 @@ def salary_data_menu(city_name)
   puts "3. UX Designer"
   puts "4. Web Designer"
   puts "5. Web Developer"
+end
+
+def save_to_favorites_menu(city_name, user_name)
+  # add the city to the cities table
+  # add the city to the user's favorites by adding a row to the favorites table
+  location = return_city_location(city_name)
+  population = return_city_population(city_name)
+  city = City.find_or_create_by(name: city_name, location: location, population: population)
+  user_id = User.find_by(name: user_name)
+  city_id = City.find_by(name: city_name)
+  Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
   puts "============================================="
 
   valid_inputs = ["1", "2", "3", "4", "5", 'e', 'm', 'b']
@@ -160,15 +171,15 @@ def salary_data_menu(city_name)
     end
     puts display_median_salary(city_name, job_title)
   end
+end
 
-  end
+
+
 #
 # def check_favorites
 #
 # end
 #
-# def save_favorites
-#
-# end
+
 
 ###################### MENU METHODS ######################
