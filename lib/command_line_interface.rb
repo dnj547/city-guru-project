@@ -5,19 +5,11 @@ end
 
 def find_or_create_user(user_name)
   if user_exists?(user_name)
-    output_if_user_exists(user_name)
+    welcome_message(user_name)
   else
+    welcome_message(user_name)
     User.find_or_create_by(name: user_name)
-    output_if_user_does_not_exist(user_name)
   end
-end
-
-def check_favorites
-
-end
-
-def save_favorites
-
 end
 
 
@@ -49,46 +41,56 @@ end
 
 
 
-def main_menu_options(user_name, input)
-  welcome_message(user_name)
-  if input == 1
+def main_menu_options(user_name)
+  valid_inputs = ["1", "2", "3", 'e', 'm']
+  input = gets.chomp
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input == "1"
     # move to favorites
-  elsif input == 2
+  elsif input == "2"
     # move to search for city
-  elsif input == 3
+  elsif input == "3"
     # move to fun facts
   elsif input.downcase == 'e'
-    exit(input)
+    exit_method
   elsif input.downcase == 'm'
     welcome_message(user_name)
-  else
-    puts "Invalid input. Please select a number from the menu."
-    welcome_message(user_name)
-  end
-
-
-  def exit
-    puts "Good bye and see you again!"
-    exit!
   end
 end
 
 
-def city_info_menu(selection)
-  if selection == 1
-
-  elsif selection == 2
-
-  elsif selection == 3
-  elsif selection == 4
-  elsif
-    selection == 5
-    exit!
-  end
+def exit_method
+  puts "Good bye and see you again!"
+  exit!
 end
 
-def salary_data_menu(selection)
 
-end
+# def city_info_menu(selection)
+#   if selection == 1
+#
+#   elsif selection == 2
+#
+#   elsif selection == 3
+#   elsif selection == 4
+#   elsif
+#     selection == 5
+#     exit!
+#   end
+# end
+
+# def salary_data_menu(selection)
+#
+# end
+#
+# def check_favorites
+#
+# end
+#
+# def save_favorites
+#
+# end
 
 ###################### MENU METHODS ######################
