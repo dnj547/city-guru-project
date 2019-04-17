@@ -28,9 +28,15 @@ def display_median_salary(city_name, job_title)
   new_response_string = RestClient.get(new_url)
   third_response_hash = JSON.parse(new_response_string)
   job_hash = third_response_hash["salaries"].select do |job|
-    job["job"]["title"].downcase == job_title.downcase
+    job["job"]["title"] == job_title
   end
   median_salary = job_hash.first["salary_percentiles"]["percentile_50"]
+
+
+  puts "============================================="
+  puts "Median salary for #{job_title} in #{city_name} is $#{median_salary.round(2)}"
+  puts "============================================="
+
 end
 
 
@@ -50,8 +56,8 @@ def get_city_info(city_name)
   new_response_hash = JSON.parse(new_response_string)
 end
 
-display_median_salary("new", "web developer")
-binding.pry
+# display_median_salary("new", "web developer")
+# binding.pry
 
 def readable_city_info(city_name)
   city_hash = get_city_info(city_name)
