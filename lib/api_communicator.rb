@@ -8,6 +8,7 @@ def display_city_info(city_name)
   # search function is smart enough to find whichever city is closest to the city name entered
   if valid_city?(city_name)
     readable_city_info(city_name)
+    
   else
     puts "============================================="
     puts "No results found. Please try again."
@@ -36,6 +37,7 @@ def readable_city_info(city_name)
   name = city_hash["name"]
   location =  city_hash["full_name"].split(", ")[1..-1].join(", ")
   population =  city_hash["population"]
+  puts "============================================="
   puts name
   puts "Location: #{location}"
   puts "Population: #{population}"
