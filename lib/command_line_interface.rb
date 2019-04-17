@@ -1,3 +1,5 @@
+require 'pry'
+
 def welcome
   puts "Hello! Welcome to City Guru"
   puts "Please enter your name to start:"
@@ -15,10 +17,6 @@ end
 
 ###################### HELPER METHODS ######################
 
-def gets_input
-  input = gets.chomp
-end
-
 def user_exists?(user_name)
   # returns true if user exists in users table, false if they do not
   !User.find_by(name: user_name).nil?
@@ -30,6 +28,7 @@ end
 
 
 def welcome_message(user_name)
+  puts "============================================="
   if user_exists?(user_name)
     puts "Welcome back to City Guru, #{user_name}! What would you like to do? Please enter a number."
   else
@@ -39,6 +38,7 @@ def welcome_message(user_name)
   puts "1. Look at favorites"
   puts "2. Search for a city"
   puts "3. Fun facts"
+  puts "============================================="
 end
 
 
@@ -52,7 +52,7 @@ def main_menu_options(user_name)
   if input == "1"
     # move to favorites
   elsif input == "2"
-    # move to search for city
+    city_search_menu(user_name)
   elsif input == "3"
     # move to fun facts
   elsif input.downcase == 'e'
@@ -62,8 +62,24 @@ def main_menu_options(user_name)
   end
 end
 
+def city_search_menu(user_name)
+  puts "============================================="
+  puts "What city would you like to search for?"
+  puts "(Type M to go back to the main menu)"
+  puts "(Type E to exit)"
+  input = gets.chomp
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu_options(user_name)
+  else
+    display_city_info(input)
+  end
+end
 
 def exit_method
+  puts "============================================="
   puts "Good bye and see you again!"
   exit!
 end
