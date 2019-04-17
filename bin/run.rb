@@ -6,4 +6,4 @@ require_relative "../lib/command_line_interface.rb"
 welcome
 user_name = gets.chomp
 find_or_create_user(user_name)
-main_menu_options(user_name)
+main_menu(user_name)
