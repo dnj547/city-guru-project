@@ -40,7 +40,7 @@ def welcome_message(user_name)
 end
 
 
-def main_menu_options(user_name)
+def main_menu(user_name)
   valid_inputs = ["1", "2", "3", 'e', 'm']
   input = gets.chomp
   until valid_inputs.include? input.downcase do
@@ -76,8 +76,8 @@ def city_search_menu(user_name)
   end
 end
 
-def city_info_menu(input, user_name)
-  display_city_info(input)
+def city_info_menu(city_name, user_name)
+  display_city_info(city_name)
   puts "what would you like to do next?"
   puts "1. View salary data for this city"
   puts "2. View quality of life data for this city"
@@ -102,6 +102,7 @@ def city_info_menu(input, user_name)
     city_search_menu(user_name)
   elsif input == '1'
     # move to salary data
+    salary_data_menu(city_name)
   elsif input == '2'
     # move to quality of life data
   elsif input == '3'
@@ -119,22 +120,48 @@ def exit_method
 end
 
 
-# def city_info_menu(selection)
-#   if selection == 1
-#
-#   elsif selection == 2
-#
-#   elsif selection == 3
-#   elsif selection == 4
-#   elsif
-#     selection == 5
-#     exit!
-#   end
-# end
+def salary_data_menu(city_name)
+  puts "============================================="
+  puts "Please select a job title by its number."
+  puts "(Type B to go back, M for main menu, E to exit)"
+  puts "1. QA Engineer"
+  puts "2. Software Engineer"
+  puts "3. UX Designer"
+  puts "4. Web Designer"
+  puts "5. Web Developer"
+  puts "============================================="
 
-# def salary_data_menu(selection)
-#
-# end
+  valid_inputs = ["1", "2", "3", "4", "5", 'e', 'm', 'b']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu_options(user_name)
+  elsif input.downcase == 'b'
+    city_search_menu(user_name)
+  else
+    if input == '1'
+      job_title = 'QA Engineer'
+    elsif input == '2'
+      job_title = 'Software Engineer'
+    elsif input == '3'
+      job_title = 'UX Designer'
+    elsif input == '4'
+      job_title = 'Web Designer'
+    elsif input == '5'
+      job_title = 'Web Developer'
+    end
+    puts display_median_salary(city_name, job_title)
+  end
+
+  end
 #
 # def check_favorites
 #
