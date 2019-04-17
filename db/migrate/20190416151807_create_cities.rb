@@ -4,7 +4,6 @@ class CreateCities < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :location
       t.integer :population
-      t.string :time_zone
     end
   end
 end

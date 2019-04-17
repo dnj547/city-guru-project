@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20190416151813) do
     t.string  "name"
     t.string  "location"
     t.integer "population"
-    t.string  "time_zone"
   end
 
   create_table "favorites", force: :cascade do |t|

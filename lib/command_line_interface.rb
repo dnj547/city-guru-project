@@ -25,7 +25,9 @@ def user_exists?(user_name)
 end
 
 
+
 ###################### MENU METHODS ######################
+
 
 def welcome_message(user_name)
   if user_exists?(user_name)
@@ -38,7 +40,6 @@ def welcome_message(user_name)
   puts "2. Search for a city"
   puts "3. Fun facts"
 end
-
 
 
 def main_menu_options(user_name)
