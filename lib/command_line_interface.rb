@@ -48,7 +48,8 @@ def main_menu(user_name)
     input = gets.chomp
   end
   if input == "1"
-    # move to favorites
+    # if
+    # check_favorites(user_name)
   elsif input == "2"
     city_search_menu(user_name)
   elsif input == "3"
@@ -108,7 +109,7 @@ def city_info_menu(city_name, user_name)
   elsif input == '3'
     save_to_favorites_menu(city_name, user_name)
   elsif input == '4'
-    # move to favorites
+    check_favorites(user_name)
   end
 end
 
@@ -195,7 +196,7 @@ def save_to_favorites_menu(city_name, user_name)
     city_search_menu(user_name)
   else
     if input == '1'
-      # move to my favorites
+      check_favorites(user_name)
     end
   end
 end
@@ -203,8 +204,8 @@ end
 
 
 
-def check_favorites
-
+def check_favorites(user_name)
+  User.find_by(name: user_name).favorites
 end
 
 
