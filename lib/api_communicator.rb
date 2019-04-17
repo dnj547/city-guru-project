@@ -50,8 +50,15 @@ def get_city_info(city_name)
   new_response_hash = JSON.parse(new_response_string)
 end
 
-display_median_salary("new", "web developer")
-binding.pry
+def return_city_location(city_name)
+  city_hash = get_city_info(city_name)
+  location =  city_hash["full_name"].split(", ")[1..-1].join(", ")
+end
+
+def return_city_population(city_name)
+  city_hash = get_city_info(city_name)
+  population =  city_hash["population"]
+end
 
 def readable_city_info(city_name)
   city_hash = get_city_info(city_name)
