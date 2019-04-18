@@ -48,7 +48,7 @@ def main_menu(user_name)
     input = gets.chomp
   end
   if input == "1"
-    # move to favorites
+    check_favorites(user_name)
   elsif input == "2"
     city_search_menu(user_name)
   elsif input == "3"
@@ -70,45 +70,48 @@ def city_search_menu(user_name)
     exit_method
   elsif input.downcase == 'm'
     welcome_message(user_name)
-    main_menu_options(user_name)
+    main_menu(user_name)
   else
     city_info_menu(input, user_name)
   end
 end
 
 def city_info_menu(city_name, user_name)
-  display_city_info(city_name)
-  puts "what would you like to do next?"
-  puts "1. View salary data for this city"
-  puts "2. View quality of life data for this city"
-  puts "3. Add this city to my favorites"
-  puts "4. Look at my favorites"
-  puts "(Type B to go back, M for main menu, E to exit)"
+  if valid_city?(city_name)
+    display_city_info(city_name)
+    puts "What would you like to do next?"
+    puts "(Type B to go back, M for main menu, E to exit)"
+    puts "1. View salary data for this city"
+    puts "2. View quality of life data for this city"
+    puts "3. Add this city to my favorites"
+    puts "4. Look at my favorites"
 
-  valid_inputs = ["1", "2", "3","4", 'e', 'm', 'b']
-  input = gets.chomp
-
-  until valid_inputs.include? input.downcase do
-    puts "Invalid input. Please select a number from the menu."
+    valid_inputs = ['1', '2', '3', '4', 'e', 'm', 'b']
     input = gets.chomp
-  end
 
-  if input.downcase == 'e'
-    exit_method
-  elsif input.downcase == 'm'
-    welcome_message(user_name)
-    main_menu_options(user_name)
-  elsif input.downcase == 'b'
-    city_search_menu(user_name)
-  elsif input == '1'
-    # move to salary data
-    salary_data_menu(city_name)
-  elsif input == '2'
-    # move to quality of life data
-  elsif input == '3'
-    # add this city to favorites
-  elsif input == '4'
-    # move to favorites
+    until valid_inputs.include? input.downcase do
+      puts "Invalid input. Please select a number from the menu."
+      input = gets.chomp
+    end
+    if input.downcase == 'e'
+      exit_method
+    elsif input.downcase == 'm'
+      welcome_message(user_name)
+      main_menu(user_name)
+    elsif input.downcase == 'b'
+      city_search_menu(user_name)
+    elsif input == '1'
+      # move to salary data
+      salary_data_menu(user_name, city_name)
+    elsif input == '2'
+      # move to quality of life data
+    elsif input == '3'
+      save_to_favorites_menu(city_name, user_name)
+    elsif input == '4'
+      check_favorites(user_name)
+    end
+  else
+    city_search_menu(city_name)
   end
 end
 
@@ -120,7 +123,7 @@ def exit_method
 end
 
 
-def salary_data_menu(city_name)
+def salary_data_menu(user_name, city_name)
   puts "============================================="
   puts "Please select a job title by its number."
   puts "(Type B to go back, M for main menu, E to exit)"
@@ -143,7 +146,7 @@ def salary_data_menu(city_name)
     exit_method
   elsif input.downcase == 'm'
     welcome_message(user_name)
-    main_menu_options(user_name)
+    main_menu(user_name)
   elsif input.downcase == 'b'
     city_search_menu(user_name)
   else
@@ -159,28 +162,99 @@ def salary_data_menu(city_name)
       job_title = 'Web Developer'
     end
     puts display_median_salary(city_name, job_title)
+    median_salary_menu(user_name, city_name)
+  end
+end
+
+def median_salary_menu(user_name, city_name)
+  puts "What would you like to do next?"
+  puts "(Type B to go back, M for main menu, E to exit)"
+
+  valid_inputs = ['e', 'm', 'b']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    salary_data_menu(user_name, city_name)
   end
 end
 
 def save_to_favorites_menu(city_name, user_name)
   # add the city to the cities table
   # add the city to the user's favorites by adding a row to the favorites table
+  name = return_city_name(city_name)
   location = return_city_location(city_name)
   population = return_city_population(city_name)
-  city = City.find_or_create_by(name: city_name, location: location, population: population)
-  user_id = User.find_by(name: user_name)
-  city_id = City.find_by(name: city_name)
-  Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
+  city = City.find_or_create_by(name: name, location: location, population: population)
+  user = User.find_by(name: user_name.downcase)
+  user_id = user.id
+  new_city = City.find_by(name: name)
+  new_city_id = new_city.id
+  favorite = Favorite.find_or_create_by(user_id: user_id, city_id: new_city_id)
+  # binding.pry
 
+  puts "#{name} has been successfully added to your favorites!"
+  puts "What would you like to do now? Please enter a number"
+  puts "(Type M for main menu, E to exit)"
+  puts "1. Look at my favorites"
+
+  valid_inputs = ["1", 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    city_search_menu(user_name)
+  elsif input == '1'
+      check_favorites(user_name)
+  end
 end
 
+def check_favorites(user_name)
+  # puts User.find_by(name: user_name.downcase).favorites
+  user = User.find_by(name: user_name.downcase)
+  favorites = Favorite.where(user_id: user.id).all
+  puts "============================================="
+  puts "These are your favorite cities!"
+  puts "(Type M for main menu, E to exit)"
+  i = 1
+  favorites.each do |favorite|
+    city = City.find_by(id: favorite.city_id)
+    puts "#{i}. #{city.name}"
+    i += 1
+  end
+  valid_inputs = ['e', 'm']
+  input = gets.chomp
 
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
 
-#
-# def check_favorites
-#
-# end
-#
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  end
+end
+
 
 
 ###################### MENU METHODS ######################

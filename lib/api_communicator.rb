@@ -11,22 +11,24 @@ def display_city_info(city_name)
   else
     puts "============================================="
     puts "No results found. Please try again."
-    puts "============================================="
   end
 end
 
 def display_median_salary(city_name, job_title)
-  # look at the city's information
-  # find the urban area it belongs to
-  # go to salary data link
-  # find median salary of job_title
+    # look at the city's information
   response_hash = get_city_info(city_name)
+
+  # find the urban area it belongs to
   url = response_hash["_links"]["city:urban_area"]["href"]
   response_string = RestClient.get(url)
   new_response_hash = JSON.parse(response_string)
+
+  # go to salary data link
   new_url = new_response_hash["_links"]["ua:salaries"]["href"]
   new_response_string = RestClient.get(new_url)
   third_response_hash = JSON.parse(new_response_string)
+
+  # find median salary of job_title
   job_hash = third_response_hash["salaries"].select do |job|
     job["job"]["title"] == job_title
   end
@@ -36,7 +38,6 @@ def display_median_salary(city_name, job_title)
   puts "============================================="
   puts "Median salary for #{job_title} in #{city_name} is $#{median_salary.round(2)}"
   puts "============================================="
-
 end
 
 
@@ -56,6 +57,10 @@ def get_city_info(city_name)
   new_response_hash = JSON.parse(new_response_string)
 end
 
+def return_city_name(city_name)
+  city_hash = get_city_info(city_name)
+  name = city_hash["name"]
+end
 
 def return_city_location(city_name)
   city_hash = get_city_info(city_name)
