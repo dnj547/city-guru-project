@@ -4,6 +4,8 @@ class CreateCities < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :location
       t.integer :population
+      t.integer :teleport_score
+      t.integer :safety_score
     end
   end
 end
