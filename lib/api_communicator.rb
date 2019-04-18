@@ -2,7 +2,8 @@ require 'rest-client'
 require 'json'
 require 'pry'
 
-# What methdos are in this file:
+# What methods are in this file:
+# =============================================
 # display_city_info(city_name)
 # display_median_salary(city_name, job_title)
 # display_quality_of_life(city_name)
@@ -15,6 +16,7 @@ require 'pry'
 # return_safety_score(city_name)
 # readable_city_info(city_name)
 # valid_city?(city_name)
+# =============================================
 
 def display_city_info(city_name)
   # showing list of cities and searching through them for the city name
@@ -164,5 +166,3 @@ def valid_city?(city_name)
   #returns true if at least 1 search result is found
   response_hash["_embedded"]["city:search-results"] != []
 end
-
-###################### HELPER METHODS ######################
