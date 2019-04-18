@@ -221,10 +221,8 @@ def save_to_favorites_menu(city_name, user_name)
     main_menu(user_name)
   elsif input.downcase == 'b'
     city_search_menu(user_name)
-  else
-    if input == '1'
+  elsif input == '1'
       check_favorites(user_name)
-    end
   end
 end
 
@@ -233,13 +231,28 @@ def check_favorites(user_name)
   user = User.find_by(name: user_name.downcase)
   favorites = Favorite.where(user_id: user.id).all
   puts "============================================="
+  puts "These are your favorite cities!"
+  puts "(Type M for main menu, E to exit)"
   i = 1
   favorites.each do |favorite|
     city = City.find_by(id: favorite.city_id)
     puts "#{i}. #{city.name}"
     i += 1
   end
+  valid_inputs = ['e', 'm']
+  input = gets.chomp
 
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  end
 end
 
 
