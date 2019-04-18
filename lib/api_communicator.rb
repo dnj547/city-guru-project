@@ -38,7 +38,6 @@ def display_median_salary(city_name, job_title)
   puts "============================================="
   puts "Median salary for #{job_title} in #{city_name} is $#{median_salary.round(2)}"
   puts "============================================="
-
 end
 
 
