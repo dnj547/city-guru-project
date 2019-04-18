@@ -16,6 +16,7 @@ require 'pry'
 # return_safety_score(city_name)
 # readable_city_info(city_name)
 # valid_city?(city_name)
+# data_exist?(city_name)
 # =============================================
 
 def display_city_info(city_name)
@@ -24,7 +25,7 @@ def display_city_info(city_name)
   if valid_city?(city_name)
     readable_city_info(city_name)
   else
-    puts "============================================="
+    puts "====================================================="
     puts "No results found. Please try again."
   end
 end
@@ -49,19 +50,27 @@ def display_median_salary(city_name, job_title)
   end
   median_salary = job_hash.first["salary_percentiles"]["percentile_50"]
 
-  puts "============================================="
+  salary_formatted = median_salary.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+
+  puts "====================================================="
   puts "\n"
-  puts "Median salary for #{job_title} in #{real_city_name} is $#{median_salary.round(2)}"
+  puts "Median salary for #{job_title} in #{real_city_name} is $#{salary_formatted}"
 end
 
 def display_quality_of_life(city_name)
-  data = get_quality_of_life(city_name)
-  puts "============================================="
-  puts "<All scores are out of 10>"
-  data["categories"].each do |category|
-    name = category["name"]
-    score = category["score_out_of_10"]
-    puts "#{name}: #{score.round(2)}"
+
+  if data_exist?(city_name)
+    data = get_quality_of_life(city_name)
+    puts "====================================================="
+    puts "<All scores are out of 10>"
+    data["categories"].each do |category|
+      name = category["name"]
+      score = category["score_out_of_10"]
+      puts "#{name}: #{score.round(2)}"
+    end
+  else
+      puts "====================================================="
+    puts "Sorry, the data doesn't exist for this city"
   end
 end
 
@@ -149,11 +158,11 @@ def readable_city_info(city_name)
   name = city_hash["name"]
   location =  city_hash["full_name"].split(", ")[1..-1].join(", ")
   population =  city_hash["population"]
-  puts "============================================="
+  puts "====================================================="
   puts name
   puts "Location: #{location}"
   puts "Population: #{population}"
-  puts "============================================="
+  puts "====================================================="
 end
 
 def valid_city?(city_name)
@@ -165,4 +174,9 @@ def valid_city?(city_name)
 
   #returns true if at least 1 search result is found
   response_hash["_embedded"]["city:search-results"] != []
+end
+
+def data_exist?(city_name)
+  data = get_city_info(city_name)
+  !data["_links"]["city:urban_area"].nil?
 end
