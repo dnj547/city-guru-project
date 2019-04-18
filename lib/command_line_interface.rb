@@ -7,12 +7,14 @@ require 'pry'
 # welcome_message(user_name)
 # main_menu(user_name)
 # city_search_menu(user_name)
-# city_info_menu(city_name, user_name)
+# city_info_menu(user_name, city_name)
 # exit_method
 # salary_data_menu(user_name, city_name)
 # median_salary_menu(user_name, city_name)
-# save_to_favorites_menu(city_name, user_name)
+# save_to_favorites_menu(user_name, name_name)
 # check_favorites(user_name)
+# quality_of_life_menu(user_name, city_name)
+# fun_facts_menu(user_name)
 
 def welcome
   puts "Hello! Welcome to City Guru"
@@ -300,6 +302,7 @@ def quality_of_life_menu(user_name, city_name)
 end
 
 def fun_facts_menu(user_name)
+  puts "============================================="
   puts "Do you know the answers to these questions? Select a question by its number to see the answer."
   puts "(Type M for main menu, E to exit)"
   puts "1. Overall, which city has the highest total quality of life score?"
@@ -320,13 +323,66 @@ def fun_facts_menu(user_name)
     welcome_message(user_name)
     main_menu(user_name)
   elsif input == '1'
-    best_city
+    best_city(user_name)
   elsif input == '2'
-    # safest city
+    safest_city(user_name)
   elsif input == '3'
     # user with most favorites
   elsif input == '4'
     # favorite city with highest total quality of life score
+  end
+end
+
+def best_city(user_name)
+  puts "============================================="
+  score = City.maximum(:teleport_score)
+  city = City.find_by(teleport_score: score)
+  puts "#{city.name} is the best city in our database!"
+  puts "It has a total quality of life score of #{score}."
+  puts "============================================="
+  puts "Type B to go back, M for main menu, E to exit"
+
+  valid_inputs = ['b', 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    fun_facts_menu(user_name)
+  end
+
+end
+
+def safest_city(user_name)
+  puts "============================================="
+  score = City.maximum(:safety_score)
+  city = City.find_by(safety_score: score)
+  puts "#{city.name} is the safest city in our database!"
+  puts "It has a safety score of #{score}."
+  puts "============================================="
+  puts "Type B to go back, M for main menu, E to exit"
+
+  valid_inputs = ['b', 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    fun_facts_menu(user_name)
   end
 end
 

@@ -5,11 +5,14 @@ require 'pry'
 # What methdos are in this file:
 # display_city_info(city_name)
 # display_median_salary(city_name, job_title)
-# get_and_display_quality_of_life(city_name)
+# display_quality_of_life(city_name)
+# get_quality_of_life(city_name)
 # get_city_info(city_name)
 # return_city_name(city_name)
 # return_city_location(city_name)
 # return_city_population(city_name)
+# return_city_score(city_name)
+# return_safety_score(city_name)
 # readable_city_info(city_name)
 # valid_city?(city_name)
 
@@ -138,10 +141,6 @@ def return_safety_score(city_name)
   end
   safety["score_out_of_10"]
 end
-
-# display_median_salary("new", "web developer")
-# binding.pry
-
 
 def readable_city_info(city_name)
   city_hash = get_city_info(city_name)
