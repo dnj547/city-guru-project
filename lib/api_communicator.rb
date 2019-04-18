@@ -44,13 +44,23 @@ def display_median_salary(city_name, job_title)
   end
   median_salary = job_hash.first["salary_percentiles"]["percentile_50"]
 
-
   puts "============================================="
   puts "\n"
   puts "Median salary for #{job_title} in #{real_city_name} is $#{median_salary.round(2)}"
 end
 
-def get_and_display_quality_of_life(city_name)
+def display_quality_of_life(city_name)
+  data = get_quality_of_life(city_name)
+  puts "============================================="
+  puts "<All scores are out of 10>"
+  data["categories"].each do |category|
+    name = category["name"]
+    score = category["score_out_of_10"]
+    puts "#{name}: #{score.round(2)}"
+  end
+end
+
+def get_quality_of_life(city_name)
   # look at the city's information
   response_hash = get_city_info(city_name)
 
@@ -63,23 +73,8 @@ def get_and_display_quality_of_life(city_name)
   new_url = new_response_hash["_links"]["ua:scores"]["href"]
   new_response_string = RestClient.get(new_url)
   third_response_hash = JSON.parse(new_response_string)
-
-  puts "============================================="
-  puts "<All scores are out of 10>"
-  third_response_hash["categories"].each do |category|
-    name = category["name"]
-    score = category["score_out_of_10"]
-    puts "#{name}: #{score.round(2)}"
-  end
 end
 
-def best_city
-
-end
-
-def safest_city
-
-end
 
 ###################### HELPER METHODS ######################
 
@@ -110,6 +105,38 @@ end
 def return_city_population(city_name)
   city_hash = get_city_info(city_name)
   population =  city_hash["population"]
+end
+
+def return_city_score(city_name)
+  # get to the cities > urban area page
+  # get to ua:scores page
+  # get telepoert_score
+  city_info = get_city_info(city_name)
+  url = city_info["_links"]["city:urban_area"]["href"]
+  response_string = RestClient.get(url)
+  response_hash = JSON.parse(response_string)
+
+  new_url = response_hash["_links"]["ua:scores"]["href"]
+  new_response_string = RestClient.get(new_url)
+  new_response_hash = JSON.parse(new_response_string)
+
+  new_response_hash["teleport_city_score"]
+end
+
+def return_safety_score(city_name)
+  city_info = get_city_info(city_name)
+  url = city_info["_links"]["city:urban_area"]["href"]
+  response_string = RestClient.get(url)
+  response_hash = JSON.parse(response_string)
+
+  new_url = response_hash["_links"]["ua:scores"]["href"]
+  new_response_string = RestClient.get(new_url)
+  new_response_hash = JSON.parse(new_response_string)
+
+  safety = new_response_hash["categories"].find do |category|
+    category["name"] == "Safety"
+  end
+  safety["score_out_of_10"]
 end
 
 # display_median_salary("new", "web developer")

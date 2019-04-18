@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20190416151813) do
     t.string  "name"
     t.string  "location"
     t.integer "population"
+    t.integer "teleport_score"
+    t.integer "safety_score"
   end
 
   create_table "favorites", force: :cascade do |t|

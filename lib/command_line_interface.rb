@@ -65,7 +65,7 @@ def main_menu(user_name)
   elsif input == "2"
     city_search_menu(user_name)
   elsif input == "3"
-    # move to fun facts
+    fun_facts_menu(user_name)
   elsif input.downcase == 'e'
     exit_method
   elsif input.downcase == 'm'
@@ -114,10 +114,9 @@ def city_info_menu(user_name, city_name)
     elsif input.downcase == 'b'
       city_search_menu(user_name)
     elsif input == '1'
-      # move to salary data
       salary_data_menu(user_name, city_name)
     elsif input == '2'
-      get_and_display_quality_of_life(city_name)
+      display_quality_of_life(city_name)
       quality_of_life_menu(user_name, city_name)
     elsif input == '3'
       save_to_favorites_menu(user_name, city_name)
@@ -204,18 +203,23 @@ def median_salary_menu(user_name, city_name)
 end
 
 def save_to_favorites_menu(user_name, city_name)
-  # add the city to the cities table
-  # add the city to the user's favorites by adding a row to the favorites table
+  # get city info from teleport API
   name = return_city_name(city_name)
   location = return_city_location(city_name)
   population = return_city_population(city_name)
-  city = City.find_or_create_by(name: name, location: location, population: population)
+  score = return_city_score(city_name)
+  safety = return_safety_score(city_name)
+
+  # add the city and user to the cities table
+  city = City.find_or_create_by(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
   user = User.find_by(name: user_name.downcase)
   user_id = user.id
   new_city = City.find_by(name: name)
   new_city_id = new_city.id
+
+  # add the city to the user's favorites by adding a row to the favorites table
   favorite = Favorite.find_or_create_by(user_id: user_id, city_id: new_city_id)
-  # binding.pry
+
   puts "============================================="
   puts "#{name} has been successfully added to your favorites!"
   puts "What would you like to do now? Please enter a number"
@@ -316,7 +320,7 @@ def fun_facts_menu(user_name)
     welcome_message(user_name)
     main_menu(user_name)
   elsif input == '1'
-    # highest total quality of life score
+    best_city
   elsif input == '2'
     # safest city
   elsif input == '3'
