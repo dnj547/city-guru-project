@@ -63,7 +63,7 @@ class CommandLineInterface
     else
       puts "Hi, #{user_name.capitalize}. This is City Guru. What would you like to do? Please enter a number."
     end
-    puts "(Type E to exit)"
+    puts "Type E to exit"
     puts "1. Look at favorites"
     puts "2. Search for a city"
     puts "3. Fun facts"
@@ -246,62 +246,98 @@ class CommandLineInterface
     end
   end
 
+  # is this city not in the cities table?
+  def city_not_in_table?(user_name, city_name)
+    user = User.find_by(name: user_name.downcase)
+    user_id = user.id
+    real_city_name = return_city_name(city_name)
+    city = City.find_by(name: real_city_name)
+    city.nil?
+  end
+
+  # is this city not in the user's favorites table?
   def city_not_in_favorite?(user_name, city_name)
     user = User.find_by(name: user_name.downcase)
     user_id = user.id
-    city = City.find_by(name: city_name.capitalize)
+    real_city_name = return_city_name(city_name)
+    city = City.find_by(name: real_city_name)
     city_id = city.id
     favorite = Favorite.where(user_id: user_id, city_id: city_id)
-    favorite.nil?
+    favorite == []
   end
 
   def save_to_favorites_menu(user_name, city_name)
+    # if the urban area data does not exist, we cannot add the city to the cities table, and we cannot add the city to the favorites table
+    # if the urban area data exists, you can add the city to your favorites
     if data_exist?(city_name)
-      if city_not_in_favorite?(user_name, city_name)
-        # get city info from teleport API
-        name = return_city_name(city_name)
-        location = return_city_location(city_name)
-        population = return_city_population(city_name)
-        score = return_city_score(city_name)
-        safety = return_safety_score(city_name)
+      # get city info from teleport API
+      name = return_city_name(city_name)
+      location = return_city_location(city_name)
+      population = return_city_population(city_name)
+      score = return_city_score(city_name)
+      safety = return_safety_score(city_name)
 
-        # add the city and user to the cities table
+      if city_not_in_table?(user_name, city_name)
+      # add the city and user to the cities table
         city = City.find_or_create_by(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
         user = User.find_by(name: user_name.downcase)
         user_id = user.id
-        new_city = City.find_by(name: name)
-        new_city_id = new_city.id
+        city_id = city.id
 
-        # add the city to the user's favorites by adding a row to the favorites table
-        favorite = Favorite.find_or_create_by(user_id: user_id, city_id: new_city_id)
+        if city_not_in_favorite?(user_name, city_name)
 
-        puts "====================================================="
-        puts "#{name} has been successfully added to your favorites!"
-        puts "What would you like to do now? Please enter a number."
-        puts "Type M for main menu, E to exit"
-        puts "1. Look at my favorites"
+          # add the city to the user's favorites by adding a row to the favorites table
+          favorite = Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
 
-        valid_inputs = ['1', 'e', 'm', 'b']
-        input = gets.chomp
+          puts "====================================================="
+          puts "#{name} has been successfully added to your favorites!"
+          puts "What would you like to do now? Please enter a number."
+          puts "Type M for main menu, E to exit"
+          puts "1. Look at my favorites"
 
-        until valid_inputs.include? input.downcase do
-          puts "Invalid input. Please select a number from the menu."
+          valid_inputs = ['1', 'e', 'm', 'b']
           input = gets.chomp
-        end
 
-        if input.downcase == 'e'
-          exit_method
-        elsif input.downcase == 'm'
-          welcome_message(user_name)
-          main_menu(user_name)
-        elsif input.downcase == 'b'
-          city_search_menu(user_name)
-        elsif input == '1'
-          check_favorites(user_name)
+          until valid_inputs.include? input.downcase do
+            puts "Invalid input. Please select a number from the menu."
+            input = gets.chomp
+          end
+
+          if input.downcase == 'e'
+            exit_method
+          elsif input.downcase == 'm'
+            welcome_message(user_name)
+            main_menu(user_name)
+          elsif input.downcase == 'b'
+            city_search_menu(user_name)
+          elsif input == '1'
+            check_favorites(user_name)
+          end
+        else
+          puts "====================================================="
+          puts "This city is already in your favorites."
+          puts "====================================================="
+          puts "Type B to go back, M for main menu, E to exit"
+
+          valid_inputs = ['b', 'e', 'm']
+          input = gets.chomp
+
+          until valid_inputs.include? input.downcase do
+            puts "Invalid input. Please select a number from the menu."
+            input = gets.chomp
+          end
+          if input.downcase == 'e'
+            exit_method
+          elsif input.downcase == 'm'
+            welcome_message(user_name)
+            main_menu(user_name)
+          elsif input.downcase == 'b'
+            city_info_menu(user_name, city_name)
+          end
         end
       else
         puts "====================================================="
-        puts "This city is already in your favorites."
+        puts "Sorry, you can't add this city to your favorites."
         puts "====================================================="
         puts "Type B to go back, M for main menu, E to exit"
 
@@ -320,27 +356,6 @@ class CommandLineInterface
         elsif input.downcase == 'b'
           city_info_menu(user_name, city_name)
         end
-      end
-    else
-      puts "====================================================="
-      puts "Sorry, you can't add this city to your favorites."
-      puts "====================================================="
-      puts "Type B to go back, M for main menu, E to exit"
-
-      valid_inputs = ['b', 'e', 'm']
-      input = gets.chomp
-
-      until valid_inputs.include? input.downcase do
-        puts "Invalid input. Please select a number from the menu."
-        input = gets.chomp
-      end
-      if input.downcase == 'e'
-        exit_method
-      elsif input.downcase == 'm'
-        welcome_message(user_name)
-        main_menu(user_name)
-      elsif input.downcase == 'b'
-        city_info_menu(user_name, city_name)
       end
     end
   end
