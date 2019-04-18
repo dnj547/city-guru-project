@@ -1,5 +1,19 @@
 require 'pry'
 
+# What methods are in this file:
+# welcome
+# find_or_create_user(user_name)
+# user_exists?(user_name)
+# welcome_message(user_name)
+# main_menu(user_name)
+# city_search_menu(user_name)
+# city_info_menu(city_name, user_name)
+# exit_method
+# salary_data_menu(user_name, city_name)
+# median_salary_menu(user_name, city_name)
+# save_to_favorites_menu(city_name, user_name)
+# check_favorites(user_name)
+
 def welcome
   puts "Hello! Welcome to City Guru"
   puts "Please enter your name to start:"
@@ -36,7 +50,6 @@ def welcome_message(user_name)
   puts "1. Look at favorites"
   puts "2. Search for a city"
   puts "3. Fun facts"
-  puts "============================================="
 end
 
 
@@ -72,11 +85,11 @@ def city_search_menu(user_name)
     welcome_message(user_name)
     main_menu(user_name)
   else
-    city_info_menu(input, user_name)
+    city_info_menu(user_name, input)
   end
 end
 
-def city_info_menu(city_name, user_name)
+def city_info_menu(user_name, city_name)
   if valid_city?(city_name)
     display_city_info(city_name)
     puts "What would you like to do next?"
@@ -104,9 +117,10 @@ def city_info_menu(city_name, user_name)
       # move to salary data
       salary_data_menu(user_name, city_name)
     elsif input == '2'
-      # move to quality of life data
+      get_and_display_quality_of_life(city_name)
+      quality_of_life_menu(user_name, city_name)
     elsif input == '3'
-      save_to_favorites_menu(city_name, user_name)
+      save_to_favorites_menu(user_name, city_name)
     elsif input == '4'
       check_favorites(user_name)
     end
@@ -132,7 +146,6 @@ def salary_data_menu(user_name, city_name)
   puts "3. UX Designer"
   puts "4. Web Designer"
   puts "5. Web Developer"
-  puts "============================================="
 
   valid_inputs = ["1", "2", "3", "4", "5", 'e', 'm', 'b']
   input = gets.chomp
@@ -167,10 +180,11 @@ def salary_data_menu(user_name, city_name)
 end
 
 def median_salary_menu(user_name, city_name)
+  puts "============================================="
   puts "What would you like to do next?"
   puts "(Type B to go back, M for main menu, E to exit)"
-
-  valid_inputs = ['e', 'm', 'b']
+  puts "1. Add this city to my favorites"
+  valid_inputs = ['1', 'e', 'm', 'b']
   input = gets.chomp
 
   until valid_inputs.include? input.downcase do
@@ -184,10 +198,12 @@ def median_salary_menu(user_name, city_name)
     main_menu(user_name)
   elsif input.downcase == 'b'
     salary_data_menu(user_name, city_name)
+  elsif input == '1'
+    save_to_favorites_menu(user_name, city_name)
   end
 end
 
-def save_to_favorites_menu(city_name, user_name)
+def save_to_favorites_menu(user_name, city_name)
   # add the city to the cities table
   # add the city to the user's favorites by adding a row to the favorites table
   name = return_city_name(city_name)
@@ -200,13 +216,13 @@ def save_to_favorites_menu(city_name, user_name)
   new_city_id = new_city.id
   favorite = Favorite.find_or_create_by(user_id: user_id, city_id: new_city_id)
   # binding.pry
-
+  puts "============================================="
   puts "#{name} has been successfully added to your favorites!"
   puts "What would you like to do now? Please enter a number"
   puts "(Type M for main menu, E to exit)"
   puts "1. Look at my favorites"
 
-  valid_inputs = ["1", 'e', 'm']
+  valid_inputs = ['1', 'e', 'm', 'b']
   input = gets.chomp
 
   until valid_inputs.include? input.downcase do
@@ -222,15 +238,15 @@ def save_to_favorites_menu(city_name, user_name)
   elsif input.downcase == 'b'
     city_search_menu(user_name)
   elsif input == '1'
-      check_favorites(user_name)
+    check_favorites(user_name)
   end
 end
 
 def check_favorites(user_name)
+  puts "============================================="
   # puts User.find_by(name: user_name.downcase).favorites
   user = User.find_by(name: user_name.downcase)
   favorites = Favorite.where(user_id: user.id).all
-  puts "============================================="
   puts "These are your favorite cities!"
   puts "(Type M for main menu, E to exit)"
   i = 1
@@ -255,6 +271,59 @@ def check_favorites(user_name)
   end
 end
 
+def quality_of_life_menu(user_name, city_name)
+  puts "============================================="
+  puts "What would you like to do next?"
+  puts "(Type B to go back, M for main menu, E to exit)"
+  puts "1. Add this city to my favorites"
+  valid_inputs = ['1', 'e', 'm', 'b']
+  input = gets.chomp
 
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    city_info_menu(user_name, city_name)
+  elsif input == '1'
+    save_to_favorites_menu(user_name, city_name)
+  end
+end
+
+def fun_facts_menu(user_name)
+  puts "Do you know the answers to these questions? Select a question by its number to see the answer."
+  puts "(Type M for main menu, E to exit)"
+  puts "1. Overall, which city has the highest total quality of life score?"
+  puts "2. What is the safest city in the US?"
+  puts "3. Which City Guru user has the most favorites in their favorites list?"
+  puts "4. Out of my favorites list, which city has the highest total quality of life score?"
+
+  valid_inputs = ['1', '2', '3', '4', 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input == '1'
+    # highest total quality of life score
+  elsif input == '2'
+    # safest city
+  elsif input == '3'
+    # user with most favorites
+  elsif input == '4'
+    # favorite city with highest total quality of life score
+  end
+end
 
 ###################### MENU METHODS ######################
