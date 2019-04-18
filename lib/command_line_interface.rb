@@ -32,8 +32,8 @@ class CommandLineInterface
   end
 
   def welcome
-    puts "Hello! Welcome to City Guru"
-    puts "Please enter your name to start:"
+    puts "Hello! Welcome to City Guru."
+    puts "Please enter your name to start."
   end
 
   def find_or_create_user(user_name)
@@ -93,8 +93,7 @@ class CommandLineInterface
   def city_search_menu(user_name)
     puts "====================================================="
     puts "What city would you like to search for?"
-    puts "(Type M to go back to the main menu)"
-    puts "(Type E to exit)"
+    puts "Type M for main menu, E to exit"
     input = gets.chomp
     if input.downcase == 'e'
       exit_method
@@ -141,6 +140,9 @@ class CommandLineInterface
         check_favorites(user_name)
       end
     else
+      puts "====================================================="
+      puts "Sorry, that's not a city in our database."
+      puts "Please try again."
       city_search_menu(city_name)
     end
   end
@@ -157,7 +159,7 @@ class CommandLineInterface
     if data_exist?(city_name)
       puts "====================================================="
       puts "Please select a job title by its number."
-      puts "(Type B to go back, M for main menu, E to exit)"
+      puts "Type B to go back, M for main menu, E to exit"
       puts "1. QA Engineer"
       puts "2. Software Engineer"
       puts "3. UX Designer"
@@ -196,7 +198,7 @@ class CommandLineInterface
       end
     else
       puts "============================================="
-      puts "Sorry, the data doesn't exist for this city"
+      puts "Sorry, the data doesn't exist for this city."
       puts "What would you like to do next?"
       puts "============================================="
       puts "Type B to go back, M for main menu, E to exit"
@@ -221,9 +223,9 @@ class CommandLineInterface
   end
 
   def median_salary_menu(user_name, city_name)
-    puts "============================================="
+    puts "====================================================="
     puts "What would you like to do next?"
-    puts "(Type B to go back, M for main menu, E to exit)"
+    puts "Type B to go back, M for main menu, E to exit"
     puts "1. Add this city to my favorites"
     valid_inputs = ['1', 'e', 'm', 'b']
     input = gets.chomp
@@ -273,10 +275,10 @@ class CommandLineInterface
         # add the city to the user's favorites by adding a row to the favorites table
         favorite = Favorite.find_or_create_by(user_id: user_id, city_id: new_city_id)
 
-        puts "============================================="
+        puts "====================================================="
         puts "#{name} has been successfully added to your favorites!"
-        puts "What would you like to do now? Please enter a number"
-        puts "(Type M for main menu, E to exit)"
+        puts "What would you like to do now? Please enter a number."
+        puts "Type M for main menu, E to exit"
         puts "1. Look at my favorites"
 
         valid_inputs = ['1', 'e', 'm', 'b']
@@ -299,7 +301,7 @@ class CommandLineInterface
         end
       else
         puts "====================================================="
-        puts "This city is already in your favorites"
+        puts "This city is already in your favorites."
         puts "====================================================="
         puts "Type B to go back, M for main menu, E to exit"
 
@@ -321,7 +323,7 @@ class CommandLineInterface
       end
     else
       puts "====================================================="
-      puts "Sorry, you can't add this city to your favorites"
+      puts "Sorry, you can't add this city to your favorites."
       puts "====================================================="
       puts "Type B to go back, M for main menu, E to exit"
 
@@ -343,39 +345,65 @@ class CommandLineInterface
     end
   end
 
+  def no_favorites?(user_name)
+    user = User.find_by(name: user_name)
+    user_id = user.id
+    favorites = Favorite.find_by(user_id: user_id)
+    favorites.nil?
+  end
+
   def check_favorites(user_name)
-    puts "============================================="
-    # puts User.find_by(name: user_name.downcase).favorites
-    user = User.find_by(name: user_name.downcase)
-    favorites = Favorite.where(user_id: user.id).all
-    puts "These are your favorite cities!"
-    puts "(Type M for main menu, E to exit)"
-    i = 1
-    favorites.each do |favorite|
-      city = City.find_by(id: favorite.city_id)
-      puts "#{i}. #{city.name}"
-      i += 1
-    end
-    valid_inputs = ['e', 'm']
-    input = gets.chomp
+    puts "====================================================="
+    if no_favorites?(user_name)
+      puts "You don't have any favorites!"
+      puts "Type M for main menu, E to exit"
 
-    until valid_inputs.include? input.downcase do
-      puts "Invalid input. Please select a number from the menu."
+      valid_inputs = ['e', 'm']
       input = gets.chomp
-    end
 
-    if input.downcase == 'e'
-      exit_method
-    elsif input.downcase == 'm'
-      welcome_message(user_name)
-      main_menu(user_name)
+      until valid_inputs.include? input.downcase do
+        puts "Invalid input. Please select a number from the menu."
+        input = gets.chomp
+      end
+      if input.downcase == 'e'
+        exit_method
+      elsif input.downcase == 'm'
+        welcome_message(user_name)
+        main_menu(user_name)
+      end
+    else
+      # puts User.find_by(name: user_name.downcase).favorites
+      user = User.find_by(name: user_name.downcase)
+      favorites = Favorite.where(user_id: user.id).all
+      puts "These are your favorite cities!"
+      puts "Type M for main menu, E to exit"
+      i = 1
+      favorites.each do |favorite|
+        city = City.find_by(id: favorite.city_id)
+        puts "#{i}. #{city.name}"
+        i += 1
+      end
+      valid_inputs = ['e', 'm']
+      input = gets.chomp
+
+      until valid_inputs.include? input.downcase do
+        puts "Invalid input. Please select a number from the menu."
+        input = gets.chomp
+      end
+
+      if input.downcase == 'e'
+        exit_method
+      elsif input.downcase == 'm'
+        welcome_message(user_name)
+        main_menu(user_name)
+      end
     end
   end
 
   def quality_of_life_menu(user_name, city_name)
     puts "============================================="
     puts "What would you like to do next?"
-    puts "(Type B to go back, M for main menu, E to exit)"
+    puts "Type B to go back, M for main menu, E to exit"
     puts "1. Add this city to my favorites"
     valid_inputs = ['1', 'e', 'm', 'b']
     input = gets.chomp
@@ -399,11 +427,11 @@ class CommandLineInterface
   def fun_facts_menu(user_name)
     puts "============================================="
     puts "Do you know the answers to these questions? Select a question by its number to see the answer."
-    puts "(Type M for main menu, E to exit)"
-    puts "1. Overall, which city has the highest total quality of life score?"
-    puts "2. What is the safest city in the US?"
+    puts "Type M for main menu, E to exit"
+    puts "1. Overall, which city in our database has the highest average quality of life score?"
+    puts "2. Overall, which city in our database is the safest?"
     puts "3. Which users have the most favorites on City Guru?"
-    puts "4. Out of my favorites list, which city has the highest total quality of life score?"
+    puts "4. Out of my favorites list, which city has the highest average quality of life score?"
 
     valid_inputs = ['1', '2', '3', '4', 'e', 'm']
     input = gets.chomp

@@ -50,9 +50,11 @@ def display_median_salary(city_name, job_title)
   end
   median_salary = job_hash.first["salary_percentiles"]["percentile_50"]
 
+  salary_formatted = median_salary.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+
   puts "====================================================="
   puts "\n"
-  puts "Median salary for #{job_title} in #{real_city_name} is $#{median_salary.round(2)}"
+  puts "Median salary for #{job_title} in #{real_city_name} is $#{salary_formatted}"
 end
 
 def display_quality_of_life(city_name)
