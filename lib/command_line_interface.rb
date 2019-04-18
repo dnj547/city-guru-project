@@ -104,7 +104,7 @@ def city_info_menu(city_name, user_name)
       # move to salary data
       salary_data_menu(user_name, city_name)
     elsif input == '2'
-      # move to quality of life data
+      get_quality_of_life(city_name)
     elsif input == '3'
       save_to_favorites_menu(city_name, user_name)
     elsif input == '4'

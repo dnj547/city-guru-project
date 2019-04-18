@@ -40,6 +40,30 @@ def display_median_salary(city_name, job_title)
   puts "============================================="
 end
 
+def get_quality_of_life(city_name)
+  # look at the city's information
+  response_hash = get_city_info(city_name)
+
+  # find the urban area it belongs to
+  url = response_hash["_links"]["city:urban_area"]["href"]
+  response_string = RestClient.get(url)
+  new_response_hash = JSON.parse(response_string)
+
+  # go to quality of life data link
+  new_url = new_response_hash["_links"]["ua:scores"]["href"]
+  new_response_string = RestClient.get(new_url)
+  third_response_hash = JSON.parse(new_response_string)
+
+  puts "============================================="
+  puts "<All scores are out of 10>"
+  third_response_hash["categories"].each do |category|
+    name = category["name"]
+    score = category["score_out_of_10"]
+    puts "#{name}: #{score.round(2)}"
+  end
+  puts "============================================="
+end
+
 
 ###################### HELPER METHODS ######################
 
