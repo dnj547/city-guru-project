@@ -307,7 +307,7 @@ def fun_facts_menu(user_name)
   puts "(Type M for main menu, E to exit)"
   puts "1. Overall, which city has the highest total quality of life score?"
   puts "2. What is the safest city in the US?"
-  puts "3. Which City Guru user has the most favorites in their favorites list?"
+  puts "3. Which users have the most favorites on City Guru?"
   puts "4. Out of my favorites list, which city has the highest total quality of life score?"
 
   valid_inputs = ['1', '2', '3', '4', 'e', 'm']
@@ -327,7 +327,7 @@ def fun_facts_menu(user_name)
   elsif input == '2'
     safest_city(user_name)
   elsif input == '3'
-    # user with most favorites
+    user_with_most_favorites(user_name)
   elsif input == '4'
     # favorite city with highest total quality of life score
   end
@@ -385,5 +385,45 @@ def safest_city(user_name)
     fun_facts_menu(user_name)
   end
 end
+
+def user_with_most_favorites(user_name)
+  puts "============================================="
+  # go thru favorites
+  # find the most frequent user_id
+  puts "<TOP 3 users>"
+  favorite = Favorite.group(:user_id).order('count_id DESC').limit(3).count(:id)
+  i = 1
+  favorite.each do |k, v|
+    user = User.find_by(id: k)
+    user_name = user.name.capitalize
+     puts "#{i}. #{user_name} has #{v} favorites"
+     i += 1
+  end
+
+  puts "============================================="
+  puts "Type B to go back, M for main menu, E to exit"
+
+  valid_inputs = ['b', 'e', 'm']
+  input = gets.chomp
+
+  until valid_inputs.include? input.downcase do
+    puts "Invalid input. Please select a number from the menu."
+    input = gets.chomp
+  end
+  if input.downcase == 'e'
+    exit_method
+  elsif input.downcase == 'm'
+    welcome_message(user_name)
+    main_menu(user_name)
+  elsif input.downcase == 'b'
+    fun_facts_menu(user_name)
+  end
+end
+
+def best_city_for_user
+
+end
+
+
 
 ###################### MENU METHODS ######################
