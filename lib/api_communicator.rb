@@ -2,7 +2,17 @@ require 'rest-client'
 require 'json'
 require 'pry'
 
-# actual method
+# What methdos are in this file:
+# display_city_info(city_name)
+# display_median_salary(city_name, job_title)
+# get_and_display_quality_of_life(city_name)
+# get_city_info(city_name)
+# return_city_name(city_name)
+# return_city_location(city_name)
+# return_city_population(city_name)
+# readable_city_info(city_name)
+# valid_city?(city_name)
+
 def display_city_info(city_name)
   # showing list of cities and searching through them for the city name
   # search function is smart enough to find whichever city is closest to the city name entered
@@ -17,7 +27,7 @@ end
 def display_median_salary(city_name, job_title)
     # look at the city's information
   response_hash = get_city_info(city_name)
-
+  real_city_name = return_city_name(city_name)
   # find the urban area it belongs to
   url = response_hash["_links"]["city:urban_area"]["href"]
   response_string = RestClient.get(url)
@@ -36,11 +46,11 @@ def display_median_salary(city_name, job_title)
 
 
   puts "============================================="
-  puts "Median salary for #{job_title} in #{city_name} is $#{median_salary.round(2)}"
-  puts "============================================="
+  puts "\n"
+  puts "Median salary for #{job_title} in #{real_city_name} is $#{median_salary.round(2)}"
 end
 
-def get_quality_of_life(city_name)
+def get_and_display_quality_of_life(city_name)
   # look at the city's information
   response_hash = get_city_info(city_name)
 
@@ -61,9 +71,15 @@ def get_quality_of_life(city_name)
     score = category["score_out_of_10"]
     puts "#{name}: #{score.round(2)}"
   end
-  puts "============================================="
 end
 
+def best_city
+
+end
+
+def safest_city
+
+end
 
 ###################### HELPER METHODS ######################
 
