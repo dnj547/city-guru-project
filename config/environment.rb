@@ -1,5 +1,6 @@
 require 'bundler'
 require 'rest-client'
+require 'colorize'
 
 Bundler.require
 
