@@ -53,12 +53,10 @@ def display_median_salary(city_name, job_title)
   salary_formatted = median_salary.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 
   puts "====================================================="
-  puts "\n"
   puts "Median salary for #{job_title} in #{real_city_name} is $#{salary_formatted}"
 end
 
 def display_quality_of_life(city_name)
-
   if data_exist?(city_name)
     data = get_quality_of_life(city_name)
     puts "====================================================="
@@ -68,9 +66,6 @@ def display_quality_of_life(city_name)
       score = category["score_out_of_10"]
       puts "#{name}: #{score.round(2)}"
     end
-  else
-      puts "====================================================="
-    puts "Sorry, the data doesn't exist for this city"
   end
 end
 
@@ -157,7 +152,7 @@ def readable_city_info(city_name)
   city_hash = get_city_info(city_name)
   name = city_hash["name"]
   location =  city_hash["full_name"].split(", ")[1..-1].join(", ")
-  population =  city_hash["population"]
+  population =  city_hash["population"].to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   puts "====================================================="
   puts name
   puts "Location: #{location}"
