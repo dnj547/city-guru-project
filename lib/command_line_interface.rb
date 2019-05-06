@@ -31,6 +31,7 @@ class CommandLineInterface
   end
 
   def welcome
+    puts `clear`
     a = Artii::Base.new
     puts "#{a.asciify('City Guru')}"
     puts "\n"
@@ -59,7 +60,7 @@ class CommandLineInterface
 
 
   def welcome_message(user_name)
-    puts "====================================================="
+    puts `clear`
     if user_exists?(user_name)
       puts "Welcome back to City Guru, #{user_name.capitalize}!".cyan
       puts "What would you like to do? Please enter a number.".cyan
@@ -75,6 +76,7 @@ class CommandLineInterface
 
 
   def main_menu(user_name)
+    puts `clear`
     valid_inputs = ["1", "2", "3", 'e', 'm']
     input = gets.chomp
     until valid_inputs.include? input.downcase do
@@ -95,7 +97,7 @@ class CommandLineInterface
   end
 
   def city_search_menu(user_name)
-    puts "====================================================="
+    puts `clear`
     puts "What city would you like to search for?".cyan
     puts "Type M for main menu, E to exit".magenta
     input = gets.chomp
@@ -171,9 +173,8 @@ class CommandLineInterface
   end
 
   def exit_method
-    puts "====================================================="
+    puts `clear`
     puts "Good bye and see you again!".cyan
-    puts "====================================================="
     exit!
   end
 
@@ -273,17 +274,18 @@ class CommandLineInterface
     if data_exist?(city_name)
       # get city info from teleport API
       puts "Please wait...".cyan
-      name = return_city_name(city_name)
-      location = return_city_location(city_name)
-      population = return_city_population(city_name)
-      score = return_city_score(city_name)
-      safety = return_safety_score(city_name)
+      arr = return_city_name_location_pop_score_safety(city_name)
+      name = arr[0]
+      location = arr[1]
+      population = arr[2]
+      score = arr[3]
+      safety = arr[4]
+      user = User.find_by(name: user_name.downcase)
+      city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
 
       if city_not_in_table?(city_name)
       # add the city and user to the cities table
         city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-        user = User.find_by(name: user_name.downcase)
-        binding.pry
 
         if city_not_in_favorite?(user_name, city_name)
 
@@ -339,7 +341,7 @@ class CommandLineInterface
         end
       else
         if city_not_in_favorite?(user_name, city_name)
-          favorite = Favorite.find_or_create_by!(user_id: user_id, city_id: city_id)
+          favorite = Favorite.create!(user_id: user.id, city_id: city.id)
 
           puts "====================================================="
           puts "#{name} has been successfully added to your favorites!".green
@@ -415,8 +417,7 @@ class CommandLineInterface
 
   def no_favorites?(user_name)
     user = User.find_by(name: user_name.downcase)
-    favorites = Favorite.find_by!(user_id: user.id)
-    favorites.nil?
+    user.favorites.empty?
   end
 
   def check_favorites(user_name)
@@ -442,6 +443,7 @@ class CommandLineInterface
       # puts User.find_by(name: user_name.downcase).favorites
       user = User.find_by(name: user_name.downcase)
       favorites = Favorite.where(user_id: user.id).all
+      puts `clear`
       puts "These are your favorite cities!".cyan
       puts "Type M for main menu, E to exit".magenta
       i = 1
@@ -491,7 +493,7 @@ class CommandLineInterface
   end
 
   def fun_facts_menu(user_name)
-    puts "============================================="
+    puts `clear`
     puts "Do you know the answers to these questions? Select a question by its number to see the answer.".cyan
     puts "Type M for main menu, E to exit".magenta
     puts "1. Overall, which city in our database has the highest average quality of life score?"
@@ -616,15 +618,11 @@ class CommandLineInterface
     # of those cities, find the one with the highest teleport score
     puts "====================================================="
     user = User.find_by(name: user_name.downcase)
-    favorites = Favorite.where(user_id: user.id).all
-    cities = favorites.map do |favorite|
-      City.find_by(id: favorite.city_id)
-    end
-    scores = cities.map do |city|
-      city.teleport_score
-    end
-    city = City.find_by(teleport_score: scores.max)
+    favorites ||= user.favorites
+    best_favorite ||= favorites.max_by {|favorite| City.find_by(id: favorite.city_id).teleport_score}
+    city ||= City.find_by(id: best_favorite.city_id)
     score = city.teleport_score
+
     puts "The best city in your favorites list is #{city.name}.".green
     puts "It has an average quality of life score of #{score} out of 100.".green
     puts "====================================================="
