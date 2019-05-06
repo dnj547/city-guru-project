@@ -148,6 +148,37 @@ def return_safety_score(city_name)
   safety["score_out_of_10"]
 end
 
+def return_city_name_location_pop_score_safety(city_name)
+  city_info ||= get_city_info(city_name)
+  name ||= city_info["name"]
+  location ||= city_info["full_name"].split(", ")[1..-1].join(", ")
+  population ||= city_info["population"]
+
+  if data_exist?(city_name)
+
+    url ||= city_info["_links"]["city:urban_area"]["href"]
+    response_string ||= RestClient.get(url)
+    response_hash ||= JSON.parse(response_string)
+
+    new_url ||= response_hash["_links"]["ua:scores"]["href"]
+    new_response_string ||= RestClient.get(new_url)
+    new_response_hash ||= JSON.parse(new_response_string)
+
+    city_score ||= new_response_hash["teleport_city_score"]
+
+    safety ||= new_response_hash["categories"].find do |category|
+      category["name"] == "Safety"
+    end
+    safety_score ||= safety["score_out_of_10"]
+
+  else
+    city_score = nil
+    safety_score = nil
+  end
+
+  arr = [name, location, population, city_score, safety_score]
+end
+
 def readable_city_info(city_name)
   city_hash = get_city_info(city_name)
   name = city_hash["name"]

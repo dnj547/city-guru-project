@@ -157,7 +157,6 @@ class CommandLineInterface
           city_info_menu(user_name, city_name)
         end
 
-
       elsif input == '3'
         save_to_favorites_menu(user_name, city_name)
       elsif input == '4'
@@ -282,15 +281,14 @@ class CommandLineInterface
 
       if city_not_in_table?(city_name)
       # add the city and user to the cities table
-        city = City.find_or_create_by(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
+        city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
         user = User.find_by(name: user_name.downcase)
-        user_id = user.id
-        city_id = city.id
+        binding.pry
 
         if city_not_in_favorite?(user_name, city_name)
 
           # add the city to the user's favorites by adding a row to the favorites table
-          favorite = Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
+          favorite = Favorite.find_or_create_by!(user_id: user.id, city_id: city.id)
 
           puts "====================================================="
           puts "#{name} has been successfully added to your favorites!".green
@@ -341,7 +339,7 @@ class CommandLineInterface
         end
       else
         if city_not_in_favorite?(user_name, city_name)
-          favorite = Favorite.find_or_create_by(user_id: user_id, city_id: city_id)
+          favorite = Favorite.find_or_create_by!(user_id: user_id, city_id: city_id)
 
           puts "====================================================="
           puts "#{name} has been successfully added to your favorites!".green
@@ -416,9 +414,8 @@ class CommandLineInterface
   end
 
   def no_favorites?(user_name)
-    user = User.find_by(name: user_name)
-    user_id = user.id
-    favorites = Favorite.find_by(user_id: user_id)
+    user = User.find_by(name: user_name.downcase)
+    favorites = Favorite.find_by!(user_id: user.id)
     favorites.nil?
   end
 
