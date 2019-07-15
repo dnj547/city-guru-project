@@ -1,3 +1,9 @@
+# City Guru
+CLI app to find quality of life data and salary data about major cities
+* Flatiron School Mod 1 Project
+* Built with vanilla Ruby
+* Collaborator: Soyeong Oh (@axionos)
+
 # What is City Guru?
 
 City Guru is a command line app that allows a user to search for cities, see information about cities and add them to their favorites.
