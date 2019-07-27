@@ -9,111 +9,6 @@ elsa = User.find_or_create_by!(name: "elsa")
 garrett = User.find_or_create_by!(name: "garrett")
 sierra = User.find_or_create_by!(name: "sierra")
 
-
-city_name = "Aarhus"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Adelaide"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Albuquerque"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Almaty"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Amsterdam"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Anchorage"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Andorra"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Ankara"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
 city_name = "Asheville"
 if !City.exists?(name: city_name)
   arr = return_city_name_location_pop_score_safety(city_name)
@@ -335,44 +230,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Bergen"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Berlin"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bern"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Bilbao"
 if !City.exists?(name: city_name)
@@ -387,161 +245,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Birmingham"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Birmingham, AL"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bogota"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Boise"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bologna"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bordeaux"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Boston"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Boulder"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bozeman"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Bratislava"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Brighton"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Brisbane"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Bristol"
 if !City.exists?(name: city_name)
@@ -699,84 +402,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Cardiff"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Casablanca"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Charleston"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Charlotte"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Chattanooga"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Chennai"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
 city_name = "Chiang Mai"
 if !City.exists?(name: city_name)
   arr = return_city_name_location_pop_score_safety(city_name)
@@ -803,44 +428,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Chisinau"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Christchurch"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Cincinnati"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Cleveland"
 if !City.exists?(name: city_name)
@@ -1115,19 +703,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Eindhoven"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
 city_name = "Eugene"
 if !City.exists?(name: city_name)
   arr = return_city_name_location_pop_score_safety(city_name)
@@ -1154,18 +729,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Florianopolis"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Fort Collins"
 if !City.exists?(name: city_name)
@@ -1193,19 +756,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Fukuoka"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
 city_name = "Galway"
 if !City.exists?(name: city_name)
   arr = return_city_name_location_pop_score_safety(city_name)
@@ -1219,83 +769,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Gdansk"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Geneva"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Gibraltar"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Glasgow"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Gothenburg"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Grenoble"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Guadalajara"
 if !City.exists?(name: city_name)
@@ -1336,70 +809,8 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Hamburg"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Hannover"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Havana"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Helsinki"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Ho Chi Minh City"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Hong Kong"
 if !City.exists?(name: city_name)
@@ -1427,57 +838,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Houston"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Hyderabad"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Indianapolis"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Innsbruck"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Istanbul"
 if !City.exists?(name: city_name)
@@ -1544,18 +905,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Karlsruhe"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Kathmandu"
 if !City.exists?(name: city_name)
@@ -1622,96 +971,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Kuala Lumpur"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Kyoto"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Lagos"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "La Paz"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Las Palmas de Gran Canaria"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Las Vegas"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Lausanne"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Leeds"
 if !City.exists?(name: city_name)
@@ -1908,44 +1168,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Malaga"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Malmo"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Managua"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Manchester"
 if !City.exists?(name: city_name)
@@ -1960,44 +1183,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Manila"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Marseille"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Medellin"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Melbourne"
 if !City.exists?(name: city_name)
@@ -2051,18 +1236,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Milan"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Milwaukee"
 if !City.exists?(name: city_name)
@@ -2090,31 +1263,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Minsk"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Montevideo"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Montreal"
 if !City.exists?(name: city_name)
@@ -2142,18 +1290,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Mumbai"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Munich"
 if !City.exists?(name: city_name)
@@ -2168,31 +1304,8 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Nairobi"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Nantes"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
+
 
 city_name = "Naples"
 if !City.exists?(name: city_name)
@@ -2259,18 +1372,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Nicosia"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
+
 
 city_name = "Oklahoma City"
 if !City.exists?(name: city_name)
@@ -2324,18 +1426,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Oslo"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Ottawa"
 if !City.exists?(name: city_name)
@@ -2389,18 +1479,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Panama"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
+
 
 city_name = "Paris"
 if !City.exists?(name: city_name)
@@ -2415,18 +1494,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Perth"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Philadelphia"
 if !City.exists?(name: city_name)
@@ -2558,18 +1625,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Providence"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Quebec"
 if !City.exists?(name: city_name)
@@ -2584,18 +1639,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Quito"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Raleigh"
 if !City.exists?(name: city_name)
@@ -2610,18 +1653,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Reykjavik"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
+
 
 city_name = "Richmond"
 if !City.exists?(name: city_name)
@@ -2753,31 +1785,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "San Diego"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "San Francisco"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "San Jose"
 if !City.exists?(name: city_name)
@@ -2870,44 +1877,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Sarajevo"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Saskatoon"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Seattle"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Seoul"
 if !City.exists?(name: city_name)
@@ -3013,18 +1982,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Stuttgart"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Sydney"
 if !City.exists?(name: city_name)
@@ -3052,18 +2009,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Tallinn"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Tampa"
 if !City.exists?(name: city_name)
@@ -3234,57 +2179,6 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Turin"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Turku"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Uppsala"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Utrecht"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Valencia"
 if !City.exists?(name: city_name)
@@ -3299,44 +2193,7 @@ if !City.exists?(name: city_name)
   end
 end
 
-city_name = "Valletta"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
-city_name = "Vancouver"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Victoria"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
 
 city_name = "Vienna"
 if !City.exists?(name: city_name)
@@ -3404,58 +2261,6 @@ if !City.exists?(name: city_name)
 end
 
 city_name = "Winnipeg"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Wroclaw"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Yerevan"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Zagreb"
-if !City.exists?(name: city_name)
-  arr = return_city_name_location_pop_score_safety(city_name)
-  if !arr.nil?
-    name = arr[0]
-    location = arr[1]
-    population = arr[2]
-    score = arr[3]
-    safety = arr[4]
-    city = City.find_or_create_by!(name: name, location: location, population: population, teleport_score: score, safety_score: safety)
-  end
-end
-
-city_name = "Zurich"
 if !City.exists?(name: city_name)
   arr = return_city_name_location_pop_score_safety(city_name)
   if !arr.nil?
