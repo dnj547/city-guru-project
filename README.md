@@ -1,5 +1,3 @@
-![City Guru Screenshot](https://user-images.githubusercontent.com/35350822/61997928-1a8f4980-b06e-11e9-9647-d3e52659190f.png)
-
 # City Guru
 * **Description:** CLI app for retrieving basic information, quality of life data, and salary data about major cities
 * **Created:** April 2019 (Flatiron School Mod 1)
