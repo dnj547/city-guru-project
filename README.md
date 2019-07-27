@@ -1,5 +1,4 @@
 ![City Guru Screenshot](https://user-images.githubusercontent.com/35350822/61997928-1a8f4980-b06e-11e9-9647-d3e52659190f.png)
->>>>>>> 439e2b019cde2e71d4570697cdd7c1e36df9dc60
 
 # City Guru
 * **Description:** CLI app for retrieving basic information, quality of life data, and salary data about major cities
