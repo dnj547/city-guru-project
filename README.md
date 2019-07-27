@@ -19,6 +19,7 @@
 ```
 git clone https://github.com/dnj547/city-guru-project.git
 cd city-guru-project
+bundle
 rake db:migrate
 rake db:seed
 ruby bin/run.rb
