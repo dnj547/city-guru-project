@@ -1,5 +1,6 @@
 # City Guru
 CLI app to find quality of life data and salary data about major cities
+
 [Demo Video](https://s3.us-east-2.amazonaws.com/video.9/City_Guru.mp4)
 * Flatiron School Mod 1 Project
 * Built with vanilla Ruby
