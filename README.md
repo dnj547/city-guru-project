@@ -14,7 +14,7 @@
 * view fun facts about cities in city database
 
 ## How do I use City Guru?
-* open terminal
+open terminal
 ```
 git clone https://github.com/dnj547/city-guru-project.git
 cd city-guru-project
